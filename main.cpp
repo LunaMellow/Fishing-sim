@@ -44,7 +44,7 @@ void menuGUI() {
         std::cout << "[Yes] or [No]\n\n";
 
         std::cin >> fish_ans;
-
+        
         if(fish_ans == "Yes") {
             fish_caught = rand() % 5;
             fish_amount += fish_caught;
@@ -52,13 +52,18 @@ void menuGUI() {
             std::cout << "You now have " << fish_amount << " fish\n\n";
 
             std::cout << "Type [Y] to fish again\n";
+            std::cin >> fish_cont;
             
             
-            if (cin.get() == 'Y')
+            if(fish_cont == "Y"){
                 fish_caught = rand() % 5;
                 fish_amount += fish_caught;
                 std::cout << "\nYou caught " << fish_caught << " little fishies!\n";
                 std::cout << "You now have " << fish_amount << " fish\n\n";
+            }
+            else {
+                menuGUI();
+            }
         }
         else if(fish_ans == "No") {
             std::cout << "\nNo cont";
