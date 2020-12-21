@@ -51,7 +51,7 @@ void menuGUI() {
             std::cout << "\nYou caught " << fish_caught << " little fishies!\n";
             std::cout << "You now have " << fish_amount << " fish\n\n";
 
-            std::cout << "Type [Y\n";
+            std::cout << "Type [Y] to fish again\n";
             
             
             if (cin.get() == 'Y')
