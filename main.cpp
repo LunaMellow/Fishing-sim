@@ -116,8 +116,52 @@ void menuGUI() {
             menuGUI();
         }
         else if(menu_ans == "3") {
-            // Se balance
-            std::cout << "//Balance//";
+
+            std::string bal_ans;
+
+            // See balance
+            std::cout << "\n//Balance//\n";
+            std::cout << "You currently have $" << bal;
+            std::cout << "\n\nWould you like to go back?\n";
+            std::cout << "[Yes] or [No]\n\n";
+
+            std::cin >> bal_ans;
+
+            if(bal_ans == "Yes") {
+                menuGUI();
+            }
+            else {
+                std::cout << "\nWell this is awkward.. How long do you want to stay lol\n\n";
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+                std::string loading = ".....\n";
+
+                for (const auto c : loading) {
+                    std::cout << c << std::flush;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+                }
+                std::cout << std::endl;
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+                std::cout << "Jesus can we go back soon?\n\n";
+
+                for (const auto c : loading) {
+                    std::cout << c << std::flush;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+                }
+                std::cout << std::endl;
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+                std::cout << "Fine I'll force you to go back!\n";
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+                menuGUI();
+            }
+
         }
         else if(menu_ans == "4") {
             // Go to market
