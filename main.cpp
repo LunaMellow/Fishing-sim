@@ -22,40 +22,6 @@ int fish_amount = 0; // Defining fish amount
 int fish_caught; // Defining fish caught
 std::string fish_ans; // Defining fishing std::cin answer
 
-// Fishing-task function
-void fishing() {
-    std::cout << "//Fishing//\n";
-    std::cout << "Fishing costs " << req_bait << " bait and " << tool_usage << "% of your fishing tool\n";
-    std::cout << "Would you like to continue?\n";
-    std::cout << "[Yes] or [No]\n\n";
-
-    std::cin >> fish_ans;
-
-    if(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
-        fish_caught = rand() % 5;
-        fish_amount = fish_amount + fish_caught;
-        tool_wear = tool_wear - tool_usage;
-        current_bait = current_bait - bait_usage;
-        std::cout << "\nBait = " << current_bait;
-        std::cout << "\n\nTool = " << tool_wear;
-        std::cout << "\n\nFish = " << fish_amount;
-        std::cout << "\n\n";
-        fishing();
-    }
-    else if(fish_ans == "No") {
-        
-    } 
-
-    else if(current_bait >! req_bait) {
-        std::cout << "\n### You do not have enough bait ###\n\n";
-        fishing();
-    }
-    else if(tool_wear >! tool_usage) {
-        std::cout << "\n### Your tool does not have enough wear ###\n\n";
-        fishing();
-    }
-}
-
 // MenuGUI function()
 void menuGUI() {
     std::cout << "Type num of task to continue: \n";
@@ -74,7 +40,34 @@ void menuGUI() {
     std::cin >> menu_ans;
 
     if(menu_ans == 1) {
-        fishing();
+        // Fishing-task function
+        std::cout << "//Fishing//\n";
+        std::cout << "Fishing costs " << req_bait << " bait and " << tool_usage << "% of your fishing tool\n";
+        std::cout << "Would you like to continue?\n";
+        std::cout << "[Yes] or [No]\n\n";
+
+        std::cin >> menu_ans;
+        std::cin >> fish_ans;
+
+        while(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
+            fish_caught = rand() % 5;
+            fish_amount = fish_amount + fish_caught;
+            tool_wear = tool_wear - tool_usage;
+            current_bait = current_bait - bait_usage;
+            std::cout << "\nBait = " << current_bait;
+            std::cout << "\nTool = " << tool_wear;
+            std::cout << "\nFish = " << fish_amount;
+            std::cout << "\n\n";
+        }
+        if(fish_ans == "No") {
+            std::cout << "You answered no";
+        } 
+        else if(current_bait >! req_bait) {
+            std::cout << "\n### You do not have enough bait ###\n\n";
+        }
+        else if(tool_wear >! tool_usage) {
+            std::cout << "\n### Your tool does not have enough wear ###\n\n";
+        }
     }
     else if(menu_ans == 2) {
         std::cout << "//Inventory//";
