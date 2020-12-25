@@ -11,27 +11,27 @@ unsigned int microseconds;
 
 // Standard variables
 double bal = 0; // Player balance
-int pre_id = 1;
-int player_id = pre_id + 1;
-int tool_tear = 10;
-int current_bait = 20;
-int tool_wear = 100;
-int tool_usage = 10;
-int req_bait = 5;
-int bait_usage = 5;
-int fish_amount = 0;
-int fish_caught;
-std::string fish_ans;
+int pre_id = 1; // Public previous player ID
+int player_id = pre_id + 1; // Defining new player id
+int current_bait = 20; // Standard bait amount
+int tool_wear = 100; // Standard tool wear
+int tool_usage = 10; // Standard tool usage
+int req_bait = 5; // Standard required bait
+int bait_usage = 5; // Standard bait usage
+int fish_amount = 0; // Defining fish amount
+int fish_caught; // Defining fish caught
+std::string fish_ans; // Defining fishing std::cin answer
 
+// Fishing-task function
 void fishing() {
     std::cout << "//Fishing//\n";
-    std::cout << "Fishing costs " << req_bait << " bait and " << tool_tear << "% of your fishing tool\n";
+    std::cout << "Fishing costs " << req_bait << " bait and " << tool_usage << "% of your fishing tool\n";
     std::cout << "Would you like to continue?\n";
     std::cout << "[Yes] or [No]\n\n";
 
     std::cin >> fish_ans;
 
-    if(fish_ans == "Yes" && current_bait > req_bait) {
+    if(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
 
         tool_wear = tool_wear - tool_usage;
         current_bait = current_bait - bait_usage;
@@ -42,6 +42,7 @@ void fishing() {
     }
 }
 
+// MenuGUI function()
 void menuGUI() {
     std::cout << "Type num of task to continue: \n";
     std::cout << "##########[ Menu ]##########\n";
@@ -79,6 +80,7 @@ void menuGUI() {
     }
 }
 
+// main function()
 int main() {
 
     std::string s = "S"; //"Welcome to fishing simulator!"
