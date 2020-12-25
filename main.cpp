@@ -36,8 +36,10 @@ void menuGUI() {
     std::cout << "# [6] The boat dealership  #\n";
     std::cout << "############################\n\n";
 
+    std::cout << "Num: ";
     int menu_ans;
     std::cin >> menu_ans;
+    std::cout << "\n";
 
     if(menu_ans == 1) {
         // Fishing-task
@@ -65,7 +67,7 @@ void menuGUI() {
             std::cin >> fish_ans;
         }
         if(fish_ans == "No") {
-            std::cout << "You answered no\n\n";
+            std::cout << "Sending you back to the menu\n\n";
             menuGUI();
         } 
         else if(current_bait >! req_bait) {
@@ -78,21 +80,32 @@ void menuGUI() {
         }
     }
     else if(menu_ans == 2) {
-        std::cout << "//Inventory//";
+        // Show inventory
+        std::cout << "Bait = " << current_bait << "     ";
+        std::cout << "Tool = " << tool_wear;
+        std::cout << "\nFish = " << fish_amount << "      ";
+        std::cout << "Cash = " << bal;
+        std::cout << "\n\n";
+        menuGUI();
     }
     else if(menu_ans == 3) {
+        // Se balance
         std::cout << "//Balance//";
     }
     else if(menu_ans == 4) {
+        // Go to market
         std::cout << "//Market//";
     }
     else if(menu_ans == 5) {
+        // Go to black market
         std::cout << "//B-Market//";
     }
     else if(menu_ans == 6) {
+        // Go to dealership
         std::cout << "//Dealership//";
     }
     else {
+        // Send back to menu if answer is not valid
         std::cout << "Answer not accepted";
         menuGUI();
     }
