@@ -1,22 +1,46 @@
+// Include all libraries
 #include <iostream>
 #include <unistd.h>
 #include <thread>
 #include <chrono>
 #include <string> 
 
+// Defining requirements
 using namespace std;
 unsigned int microseconds;
 
 // Standard variables
-double bal = 0;
+double bal = 0; // Player balance
 int pre_id = 1;
 int player_id = pre_id + 1;
-int req_bait = 5;
 int tool_tear = 10;
-int current_bait = 0;
+int current_bait = 20;
 int tool_wear = 100;
+int tool_usage = 10;
+int req_bait = 5;
+int bait_usage = 5;
 int fish_amount = 0;
 int fish_caught;
+std::string fish_ans;
+
+void fishing() {
+    std::cout << "//Fishing//\n";
+    std::cout << "Fishing costs " << req_bait << " bait and " << tool_tear << "% of your fishing tool\n";
+    std::cout << "Would you like to continue?\n";
+    std::cout << "[Yes] or [No]\n\n";
+
+    std::cin >> fish_ans;
+
+    if(fish_ans == "Yes" && current_bait > req_bait) {
+
+        tool_wear = tool_wear - tool_usage;
+        current_bait = current_bait - bait_usage;
+        std::cout << "\n\nBait = " << current_bait;
+        std::cout << "\n\nTool = " << tool_wear;
+        std::cout << "\n\n";
+        fishing();
+    }
+}
 
 void menuGUI() {
     std::cout << "Type num of task to continue: \n";
@@ -33,45 +57,10 @@ void menuGUI() {
 
     int menu_ans;
     std::cin >> menu_ans;
-    std::string fish_ans;
     std::string fish_cont;
 
-
     if(menu_ans == 1) {
-        std::cout << "//Fishing//\n";
-        std::cout << "Fishing costs " << req_bait << " bait and " << tool_tear << "% of your fishing tool\n";
-        std::cout << "Would you like to continue?\n";
-        std::cout << "[Yes] or [No]\n\n";
-
-        std::cin >> fish_ans;
-        
-        if(fish_ans == "Yes") {
-            fish_caught = rand() % 5;
-            fish_amount += fish_caught;
-            std::cout << "\nYou caught " << fish_caught << " little fishies!\n";
-            std::cout << "You now have " << fish_amount << " fish\n\n";
-
-            std::cout << "Type [Y] to fish again\n";
-            std::cin >> fish_cont;
-            
-            
-            if(fish_cont == "Y"){
-                fish_caught = rand() % 5;
-                fish_amount += fish_caught;
-                std::cout << "\nYou caught " << fish_caught << " little fishies!\n";
-                std::cout << "You now have " << fish_amount << " fish\n\n";
-            }
-            else {
-                menuGUI();
-            }
-        }
-        else if(fish_ans == "No") {
-            std::cout << "\nNo cont";
-        }
-        else {
-            std::cout << "\nAn error occured";
-        }
-        
+        fishing();
     }
     else if(menu_ans == 2) {
         std::cout << "//Inventory//";
@@ -88,12 +77,11 @@ void menuGUI() {
     else if(menu_ans == 6) {
         std::cout << "//Dealership//";
     }
-
 }
 
 int main() {
 
-    std::string s = "Welcome to fishing simulator!";
+    std::string s = "S"; //"Welcome to fishing simulator!"
 
     for (const auto c : s) {
         std::cout << c << std::flush;
