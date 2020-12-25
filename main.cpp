@@ -35,7 +35,7 @@ std::string player_name;
 
 // MenuGUI function()
 void menuGUI() {
-    std::cout << "\n----------------------------\n";
+    std::cout << "\n----------------------------\n\n";
     std::cout << "Type num of task to continue: \n";
     std::cout << "##########[ Menu ]##########\n";
     std::cout << "# [1] Go fishing           #\n";
@@ -67,7 +67,7 @@ void menuGUI() {
             std::cout << "[Yes] or [No]\n\n";
             std::cin >> fish_ans;
 
-            while(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
+            while(fish_ans == "Yes" && current_bait >= req_bait && tool_wear >= tool_usage) {
                 fish_caught = rand() % fish_chance;
                 fish_amount = fish_amount + fish_caught;
                 tool_wear = tool_wear - tool_usage;
@@ -96,12 +96,12 @@ void menuGUI() {
                 std::cout << "\nSending you back to the menu\n\n";
                 menuGUI();
             } 
-            else if(current_bait >! req_bait) {
+            else if(current_bait < req_bait) {
                 std::cout << "\n----------------------------\n";
                 std::cout << "\n### You do not have enough bait ###\n\n";
                 menuGUI();
             }
-            else if(tool_wear >! tool_usage) {
+            else if(tool_wear < tool_usage) {
                 std::cout << "\n----------------------------\n";
                 std::cout << "\n### Your tool does not have enough wear ###\n\n";
                 menuGUI();
@@ -116,7 +116,7 @@ void menuGUI() {
             std::cout << "Tool = " << tool_wear;
             std::cout << "\nFish = " << fish_amount << "      ";
             std::cout << "Chances = 1/" << fish_chance;
-            std::cout << "\n\n";
+            std::cout << "\n";
             menuGUI();
         }
         else if(menu_ans == "3") {
@@ -210,7 +210,7 @@ void menuGUI() {
 // main function()
 int main() {
 
-    std::string s = "S"; //"Welcome to fishing simulator!"
+    std::string s = "Welcome to fishing simulator!"; // Welcome message
 
     for (const auto c : s) {
         std::cout << c << std::flush;
@@ -220,9 +220,10 @@ int main() {
 
     std::cout << "\n----------------------------\n";
     std::cout << "\nWhat do you want your username to be?\n";
+    std::cout << "Name: ";
     std::cin >> player_name;
     std::cout << "\n";
-    std::cout << "Cool! Welcome " << player_name << ", hope you enjoy the game";
+    std::cout << "Cool! Welcome " << player_name << ", hope you enjoy the game\n";
 
     menuGUI();
 
