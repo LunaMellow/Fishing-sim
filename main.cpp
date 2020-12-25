@@ -32,12 +32,26 @@ void fishing() {
     std::cin >> fish_ans;
 
     if(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
-
+        fish_caught = rand() % 5;
+        fish_amount = fish_amount + fish_caught;
         tool_wear = tool_wear - tool_usage;
         current_bait = current_bait - bait_usage;
-        std::cout << "\n\nBait = " << current_bait;
+        std::cout << "\nBait = " << current_bait;
         std::cout << "\n\nTool = " << tool_wear;
+        std::cout << "\n\nFish = " << fish_amount;
         std::cout << "\n\n";
+        fishing();
+    }
+    else if(fish_ans == "No") {
+        
+    } 
+
+    else if(current_bait >! req_bait) {
+        std::cout << "\n### You do not have enough bait ###\n\n";
+        fishing();
+    }
+    else if(tool_wear >! tool_usage) {
+        std::cout << "\n### Your tool does not have enough wear ###\n\n";
         fishing();
     }
 }
@@ -58,7 +72,6 @@ void menuGUI() {
 
     int menu_ans;
     std::cin >> menu_ans;
-    std::string fish_cont;
 
     if(menu_ans == 1) {
         fishing();
@@ -77,6 +90,10 @@ void menuGUI() {
     }
     else if(menu_ans == 6) {
         std::cout << "//Dealership//";
+    }
+    else {
+        std::cout << "Answer not accepted";
+        menuGUI();
     }
 }
 
