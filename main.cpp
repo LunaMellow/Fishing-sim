@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <string> 
+#include <fstream>
 
 // Defining requirements
 using namespace std;
@@ -19,8 +20,8 @@ bool isNumeric(string str) {
 
 // Standard variables
 double bal = 0; // Player balance
-int pre_id = 1; // Public previous player ID
-int player_id = pre_id + 1; // Defining new player id
+int pre_id; // Public previous player ID
+int player_id; // Defining new player id
 int current_bait = 20; // Standard bait amount
 int tool_wear = 100; // Standard tool wear
 int tool_usage = 10; // Standard tool usage
@@ -30,6 +31,7 @@ int fish_amount = 0; // Defining fish amount
 int fish_caught; // Defining fish caught
 int fish_chance = 5; // Defining chance for fishing
 std::string fish_ans; // Defining fishing std::cin answer
+std::string player_name;
 
 // MenuGUI function()
 void menuGUI() {
@@ -44,6 +46,8 @@ void menuGUI() {
     std::cout << "# [4] The market           #\n";
     std::cout << "# [5] The black market     #\n";
     std::cout << "# [6] The boat dealership  #\n";
+    std::cout << "#                          #\n";
+    std::cout << "# [7] DEBUG                #\n";
     std::cout << "############################\n\n";
 
     std::cout << "Num: ";
@@ -175,6 +179,22 @@ void menuGUI() {
             // Go to dealership
             std::cout << "//Dealership//";
         }
+        else if(menu_ans == "7") {
+            ofstream ids;
+            ids.open ("playerIDs.txt");
+            ids << player_name << "-" << pre_id << "\n";
+            ids.close();
+
+            std::string idb_out;
+
+            ifstream idb;
+            idb.open ("playerIDs.txt");
+            while (getline(idb, idb_out)) {
+                idb_out = player_id;
+                std::cout << "Your id is " << player_id << "\n";
+            idb.close();
+            }
+        }
         else {
             // Send back to menu if answer is not valid
             std::cout << "Answer not accepted";
@@ -197,6 +217,12 @@ int main() {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     std::cout << std::endl;
+
+    std::cout << "\n----------------------------\n";
+    std::cout << "\nWhat do you want your username to be?\n";
+    std::cin >> player_name;
+    std::cout << "\n";
+    std::cout << "Cool! Welcome " << player_name << ", hope you enjoy the game";
 
     menuGUI();
 
