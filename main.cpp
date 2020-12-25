@@ -30,6 +30,9 @@ int bait_usage = 5; // Standard bait usage
 int fish_amount = 0; // Defining fish amount
 int fish_caught; // Defining fish caught
 int fish_chance = 5; // Defining chance for fishing
+int fish_price; // Defining fish price for market
+int fish_value = 3; // Defining value interval per fish
+int fish_total; // Defining total cashout after selling
 std::string fish_ans; // Defining fishing std::cin answer
 std::string player_name;
 
@@ -98,12 +101,12 @@ void menuGUI() {
             } 
             else if(current_bait < req_bait) {
                 std::cout << "\n----------------------------\n";
-                std::cout << "\n### You do not have enough bait ###\n\n";
+                std::cout << "\n### You do not have enough bait ###\n";
                 menuGUI();
             }
             else if(tool_wear < tool_usage) {
                 std::cout << "\n----------------------------\n";
-                std::cout << "\n### Your tool does not have enough wear ###\n\n";
+                std::cout << "\n### Your tool does not have enough wear ###\n";
                 menuGUI();
             }
         }
@@ -168,8 +171,29 @@ void menuGUI() {
 
         }
         else if(menu_ans == "4") {
+            std::string m_ans;
+
             // Go to market
             std::cout << "//Market//";
+            std::cout << "\nDo you want to sell your fish?\n";
+            std::cout << "[Yes] or [No]\n\n";
+            std::cin >> m_ans;
+            
+            if(m_ans == "Yes") {
+                fish_price = rand() % fish_value;
+
+                fish_total = fish_price * fish_amount;
+
+                bal = bal + fish_total;
+
+                std::cout << "\nSelling fish for $" << fish_price << " pr/fish\n";
+
+                fish_amount = 0;
+
+                std::cout << "Wow " << player_name << "! After selling your fish, you now have $" << bal;
+
+                menuGUI();
+            }
         }
         else if(menu_ans == "5") {
             // Go to black market
