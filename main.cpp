@@ -40,13 +40,11 @@ void menuGUI() {
     std::cin >> menu_ans;
 
     if(menu_ans == 1) {
-        // Fishing-task function
+        // Fishing-task
         std::cout << "//Fishing//\n";
         std::cout << "Fishing costs " << req_bait << " bait and " << tool_usage << "% of your fishing tool\n";
         std::cout << "Would you like to continue?\n";
         std::cout << "[Yes] or [No]\n\n";
-
-        std::cin >> menu_ans;
         std::cin >> fish_ans;
 
         while(fish_ans == "Yes" && current_bait > req_bait && tool_wear > tool_usage) {
@@ -58,15 +56,25 @@ void menuGUI() {
             std::cout << "\nTool = " << tool_wear;
             std::cout << "\nFish = " << fish_amount;
             std::cout << "\n\n";
+            
+            std::cout << "//Fishing//\n";
+            std::cout << "Fishing costs " << req_bait << " bait and " << tool_usage << "% of your fishing tool\n";
+            std::cout << "Would you like to continue?\n";
+            std::cout << "[Yes] or [No]\n\n";
+
+            std::cin >> fish_ans;
         }
         if(fish_ans == "No") {
-            std::cout << "You answered no";
+            std::cout << "You answered no\n\n";
+            menuGUI();
         } 
         else if(current_bait >! req_bait) {
             std::cout << "\n### You do not have enough bait ###\n\n";
+            menuGUI();
         }
         else if(tool_wear >! tool_usage) {
             std::cout << "\n### Your tool does not have enough wear ###\n\n";
+            menuGUI();
         }
     }
     else if(menu_ans == 2) {
