@@ -22,7 +22,7 @@ bool isNumeric(string str) {
 double bal = 0; // Player balance
 int pre_id; // Public previous player ID
 int player_id; // Defining new player id
-int current_bait = 20; // Standard bait amount
+int current_bait = 50; // Standard bait amount
 int tool_wear = 100; // Standard tool wear
 int tool_usage = 10; // Standard tool usage
 int tool_up_cost; // Defining upgrade cost for tool
@@ -204,17 +204,27 @@ void menuGUI() {
                 menuGUI();
             }
             else if(market_ans == "2") {
-                tool_up_cost = bal / 5;
+                tool_up_cost = bal / 5 * 2;
+
+                if(tool_up_cost < 10) {
+                    tool_up_cost = 10;
+                }
 
                 std::cout << "\n//Tool forge//\n";
-                std::cout << "Here you can upgrade your tool\na tool upgrade costs $" << tool_up_cost << " to upgrade.\nDo you really want to upgrade?\n";
+                std::cout << "Here you can upgrade your tool.\nA tool upgrade costs $" << tool_up_cost << " to upgrade.\n\nDo you really want to upgrade?\n";
                 std::cout << "[Yes] or [No]\n\n";
 
                 std::string toolup_ans;
                 std::cin >> toolup_ans;
 
                 if(toolup_ans == "Yes") {
-                    std::cout << "...";
+                    tool_wear = 100;
+                    bal = bal - tool_up_cost;
+                    tool_wear = tool_wear * 1.1;
+                    fish_chance = fish_chance * 2;
+                    std::cout << "Your tool wear has been upgraded by 10% and your chance of getting fish is now 1/" << fish_chance;
+
+                    menuGUI();
                 }
                 else {
                     menuGUI();
@@ -224,7 +234,18 @@ void menuGUI() {
                     
             }
             else if(market_ans == "4") {
-                    
+                std::cout << "\n//Bait shack//\n";
+                std::cout << "Bait costs $1 pr/bait.\n\nHow much do you want to buy?\n";
+
+                int bait_ans;
+                std::cin >> bait_ans;
+                
+                bal = bal - bait_ans;
+                current_bait = current_bait + bait_ans;
+
+                std::cout << "You bought $" << bait_ans << " worth of bait and currently have $" << bal << " left in your wallet";
+
+                menuGUI();
             }
             else if(market_ans == "5") {
                     
