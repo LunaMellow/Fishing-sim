@@ -25,6 +25,7 @@ int player_id; // Defining new player id
 int current_bait = 20; // Standard bait amount
 int tool_wear = 100; // Standard tool wear
 int tool_usage = 10; // Standard tool usage
+int tool_up_cost; // Defining upgrade cost for tool
 int req_bait = 5; // Standard required bait
 int bait_usage = 5; // Standard bait usage
 int fish_amount = 0; // Defining fish amount
@@ -187,6 +188,7 @@ void menuGUI() {
             std::cin >> market_ans;
 
             if(market_ans == "1") {
+                std::cout << "\n//Selling fish//\n";
                 fish_price = rand() % fish_value;
 
                 fish_total = fish_price * fish_amount;
@@ -198,9 +200,25 @@ void menuGUI() {
                 fish_amount = 0;
 
                 std::cout << "Wow" << player_name << "! After selling your fish, you now have $" << bal;
+
+                menuGUI();
             }
             else if(market_ans == "2") {
-                
+                tool_up_cost = bal / 5;
+
+                std::cout << "\n//Tool forge//\n";
+                std::cout << "Here you can upgrade your tool\na tool upgrade costs $" << tool_up_cost << " to upgrade.\nDo you really want to upgrade?\n";
+                std::cout << "[Yes] or [No]\n\n";
+
+                std::string toolup_ans;
+                std::cin >> toolup_ans;
+
+                if(toolup_ans == "Yes") {
+                    std::cout << "...";
+                }
+                else {
+                    menuGUI();
+                }
             }
             else if(market_ans == "3") {
                     
