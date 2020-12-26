@@ -32,7 +32,7 @@ int fish_amount = 0; // Defining fish amount
 int fish_caught; // Defining fish caught
 int fish_chance = 5; // Defining chance for fishing
 int fish_price; // Defining fish price for market
-int fish_value = 3; // Defining value interval per fish
+int fish_value = 5; // Defining value interval per fish
 int fish_total; // Defining total cashout after selling
 std::string fish_ans; // Defining fishing std::cin answer
 std::string player_name;
@@ -173,7 +173,7 @@ void menuGUI() {
 
         }
         else if(menu_ans == "4") {
-            std::cout << "\n--------------------------------\n\n";
+            std::cout << "--------------------------------\n\n";
             std::cout << "##########[  Market  ]##########\n";
             std::cout << "# [1] Sell your fish           #\n";
             std::cout << "# [2] Upgrade your tool        #\n";
@@ -217,11 +217,10 @@ void menuGUI() {
                 std::string toolup_ans;
                 std::cin >> toolup_ans;
 
-                if(toolup_ans == "Yes") {
-                    tool_wear = 100;
+                if(toolup_ans == "Yes" && bal > 10) {
                     bal = bal - tool_up_cost;
-                    tool_wear = tool_wear * 1.1;
-                    fish_chance = fish_chance * 2;
+                    tool_wear = tool_wear + 150 * 1.1;
+                    fish_chance = fish_chance * 1.5;
                     std::cout << "Your tool wear has been upgraded by 10% and your chance of getting fish is now 1/" << fish_chance;
 
                     menuGUI();
@@ -231,7 +230,7 @@ void menuGUI() {
                 }
             }
             else if(market_ans == "3") {
-                    
+                menuGUI();
             }
             else if(market_ans == "4") {
                 std::cout << "\n//Bait shack//\n";
@@ -239,19 +238,26 @@ void menuGUI() {
 
                 int bait_ans;
                 std::cin >> bait_ans;
-                
-                bal = bal - bait_ans;
-                current_bait = current_bait + bait_ans;
 
-                std::cout << "You bought $" << bait_ans << " worth of bait and currently have $" << bal << " left in your wallet";
+                if(bait_ans <= bal) {
+                                    
+                    bal = bal - bait_ans;
+                    current_bait = current_bait + bait_ans;
 
-                menuGUI();
+                    std::cout << "You bought $" << bait_ans << " worth of bait and currently have $" << bal << " left in your wallet";
+
+                    menuGUI();
+                }
+                else if(bait_ans >= bal) {
+                    std::cout << "\nNot enough cash\n";
+                    menuGUI();
+                }
             }
             else if(market_ans == "5") {
-                    
+                menuGUI();
             }
             else if(market_ans == "6") {
-                    
+                menuGUI();
             }
         }
         else if(menu_ans == "5") {
