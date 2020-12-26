@@ -55,6 +55,7 @@ void menuGUI() {
 
     std::cout << "Num: ";
     std::string menu_ans;
+    std::string market_ans;
     std::cin >> menu_ans;
     std::cout << "\n";
 
@@ -171,15 +172,21 @@ void menuGUI() {
 
         }
         else if(menu_ans == "4") {
-            std::string m_ans;
+            std::cout << "\n--------------------------------\n\n";
+            std::cout << "##########[  Market  ]##########\n";
+            std::cout << "# [1] Sell your fish           #\n";
+            std::cout << "# [2] Upgrade your tool        #\n";
+            std::cout << "# [3] Buy new tool             #\n";
+            std::cout << "# [4] Buy bait.                #\n";
+            std::cout << "# [5] Improve your reputation  #\n";
+            std::cout << "#                              #\n";
+            std::cout << "# [6] %B14ck M4rk3t%           #\n";
+            std::cout << "################################\n\n";
 
-            // Go to market
-            std::cout << "//Market//";
-            std::cout << "\nDo you want to sell your fish?\n";
-            std::cout << "[Yes] or [No]\n\n";
-            std::cin >> m_ans;
-            
-            if(m_ans == "Yes") {
+            std::cout << "Num: ";
+            std::cin >> market_ans;
+
+            if(market_ans == "1") {
                 fish_price = rand() % fish_value;
 
                 fish_total = fish_price * fish_amount;
@@ -190,9 +197,22 @@ void menuGUI() {
 
                 fish_amount = 0;
 
-                std::cout << "Wow " << player_name << "! After selling your fish, you now have $" << bal;
-
-                menuGUI();
+                std::cout << "Wow" << player_name << "! After selling your fish, you now have $" << bal;
+            }
+            else if(market_ans == "2") {
+                
+            }
+            else if(market_ans == "3") {
+                    
+            }
+            else if(market_ans == "4") {
+                    
+            }
+            else if(market_ans == "5") {
+                    
+            }
+            else if(market_ans == "6") {
+                    
             }
         }
         else if(menu_ans == "5") {
@@ -234,7 +254,7 @@ void menuGUI() {
 // main function()
 int main() {
 
-    std::string s = "Welcome to fishing simulator!"; // Welcome message
+    std::string s = ""; // Welcome message "Welcome to fishing simulator!"
 
     for (const auto c : s) {
         std::cout << c << std::flush;
@@ -242,12 +262,12 @@ int main() {
     }
     std::cout << std::endl;
 
-    std::cout << "\n----------------------------\n";
-    std::cout << "\nWhat do you want your username to be?\n";
-    std::cout << "Name: ";
-    std::cin >> player_name;
-    std::cout << "\n";
-    std::cout << "Cool! Welcome " << player_name << ", hope you enjoy the game\n";
+//    std::cout << "\n----------------------------\n";
+//    std::cout << "\nWhat do you want your username to be?\n";
+//    std::cout << "Name: ";
+//    std::cin >> player_name;
+//    std::cout << "\n";
+//    std::cout << "Cool! Welcome " << player_name << ", hope you enjoy the game\n";
 
     menuGUI();
 
