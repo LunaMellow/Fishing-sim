@@ -32,7 +32,7 @@ int fish_amount = 0; // Defining fish amount
 int fish_caught; // Defining fish caught
 int fish_chance = 5; // Defining chance for fishing
 int fish_price; // Defining fish price for market
-int fish_value = 5; // Defining value interval per fish
+int fish_value = 100; // Defining value interval per fish
 int fish_total; // Defining total cashout after selling
 std::string fish_ans; // Defining fishing std::cin answer
 std::string player_name;
@@ -170,7 +170,6 @@ void menuGUI() {
 
                 menuGUI();
             }
-
         }
         else if(menu_ans == "4") {
             std::cout << "--------------------------------\n\n";
@@ -257,6 +256,9 @@ void menuGUI() {
                 menuGUI();
             }
             else if(market_ans == "6") {
+                std::cout << "//B-Market//\n";
+                bal = bal + 200;
+                std::cout << "Money has been added to your account. shush";
                 menuGUI();
             }
         }
